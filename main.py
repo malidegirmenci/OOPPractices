@@ -132,6 +132,14 @@ class Character:
         string = f'Class: {self.nameOfClass} \nName: {self.name} \nHealth: {self.health} \nAttack Power: {self.attack_power} \nCritical Rate: {self.critical_rate} \nDefence: {self.defence}'
         return string
 
+    def attack(self):
+        return f'Attack damage: {self.attack_power}'
+
+    def show_char_name(self):
+        return Helper.centered_title(self.name)
+
+    def class_metod2(self):
+        Helper.class_method()
 
 class Warrior(Character):
     def __init__(self, name, health, attack_power, critical_rate, defence, rage):
@@ -141,7 +149,6 @@ class Warrior(Character):
     def __str__(self):
         return f'{super().__str__()} \nRage: {self.rage}'
 
-
 class Wizard(Character):
     def __init__(self, name, health, attack_power, critical_rate, defence, mana):
         super().__init__(name, health, attack_power, critical_rate, defence, 'Wizard')
@@ -150,10 +157,65 @@ class Wizard(Character):
     def __str__(self):
         return f'{super().__str__()} \nMana: {self.mana}'
 
+class Gargamel(Wizard):
+    def __init__(self, name, health, attack_power, critical_rate, defence, mana, nose):
+        super().__init__(name, health, attack_power, critical_rate, defence, mana)
+        self.nose = nose
+
+    def __str__(self):
+        return f'{super().__str__()} \nNose: {self.nose}'
+
+class Gromp(Character):
+    def __init__(self, name, health, attack_power,critical_rate, defence):
+        super().__init__(name,health, attack_power, critical_rate, defence,'Monster')
+
+    #def __str__(self):
+        #return f'{super().__str__()} \nAli Veli: {self.name}'
 
 warrior1 = Warrior('Mahmut', 1231, 2131, 21, 21, 12)
 
 wizard1 = Wizard('Kezban', 231, 3131, 21, 21, 10)
 
+gromp1 = Gromp('Gromp', 321, 213,33,512)
+
+gargamel1 = Gargamel('Gargamel', 321, 2131, 21, 21, 10, 'Burun güzeli')
+gargamel2 = Gargamel('Gargamel2', 321, 432, 21, 21, 10, 'Burun çirkini')
+
+# __str__ == .toString()
 # print(warrior1.__str__())
-print(wizard1.__str__())
+# print(wizard1.__str__())
+# print(gromp1.__str__())
+# print(gargamel1.__str__())
+
+#POLYMORPHISM !Burası detaylandıralacak
+
+#print(gargamel1.attack())
+#print(gargamel2.attack())
+
+#class Helper:
+    #def __init__(self, message):
+    #self.message = message
+
+#helper1 = Helper('Mahmut künefe sever')
+#print(helper1.message)
+
+class Helper:
+    def show_message(message):
+        print()
+        print(message)
+        print()
+
+    @staticmethod
+    def centered_title(title):
+        print('-'*10+title+'-'*10)
+
+    @classmethod
+    def class_method(cls):
+        print('Bu bir sınıf yöntemidir')
+        print('Sınıf:', cls)
+
+#Helper.show_message('Hello World!')
+#gromp1.show_char_name()
+#Helper.class_method()
+#gromp1.class_metod2()
+Helper.show_message('Mahmut Ekrem')
