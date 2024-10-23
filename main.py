@@ -127,19 +127,26 @@ class Character:
         self.defence = defence
         self.nameOfClass = nameOfClass
 
+
     # toString() == __str__
     def __str__(self):
         string = f'Class: {self.nameOfClass} \nName: {self.name} \nHealth: {self.health} \nAttack Power: {self.attack_power} \nCritical Rate: {self.critical_rate} \nDefence: {self.defence}'
         return string
 
-    def attack(self):
-        return f'Attack damage: {self.attack_power}'
+    def attack(self, target):
+        return f'Attack damage: {self.attack_power - target.defence}'
 
     def show_char_name(self):
         return Helper.centered_title(self.name)
 
     def class_metod2(self):
         Helper.class_method()
+
+'''
+char2 = Character('Mahmut', 213, 321,21,3,'Char')
+Character.class_metod2()
+char2.attack()
+'''
 
 class Warrior(Character):
     def __init__(self, name, health, attack_power, critical_rate, defence, rage):
@@ -177,6 +184,7 @@ warrior1 = Warrior('Mahmut', 1231, 2131, 21, 21, 12)
 wizard1 = Wizard('Kezban', 231, 3131, 21, 21, 10)
 
 gromp1 = Gromp('Gromp', 321, 213,33,512)
+gromp1.name = 'Fehmi'
 
 gargamel1 = Gargamel('Gargamel', 321, 2131, 21, 21, 10, 'Burun güzeli')
 gargamel2 = Gargamel('Gargamel2', 321, 432, 21, 21, 10, 'Burun çirkini')
@@ -200,6 +208,7 @@ gargamel2 = Gargamel('Gargamel2', 321, 432, 21, 21, 10, 'Burun çirkini')
 #print(helper1.message)
 
 class Helper:
+
     def show_message(message):
         print()
         print(message)
@@ -218,4 +227,43 @@ class Helper:
 #gromp1.show_char_name()
 #Helper.class_method()
 #gromp1.class_metod2()
-Helper.show_message('Mahmut Ekrem')
+#Helper.show_message('Mahmut Ekrem')
+#Helper.centered_title('Black Myth Wukong')
+
+#Encapsulation
+class Person:
+    def __init__(self, name, surname, address):
+        self.__name = name #PRIVATE
+        self.surname = surname #PUBLIC
+        self._address = address #PROTECTED
+
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name):
+        self.__name = name
+
+    def get_fullname(self):
+        return self.get_name() + self.surname
+
+    def get_surname(self):
+        return self.surname
+
+    def get_address(self):
+        return self._address
+
+class Umut:
+    person1 = Person('Mahmut', 'Ekrem', 'Azerbaycan')
+    #print(person1.name)
+    #print(person1.surname)
+    ##print(person1.get_name())
+    #print(person1.get_fullname())
+    #print(person1.surname)
+    #print(person1.get_surname())
+    print(person1.get_name())
+    person1.set_name('Fehmi')
+    print(person1.get_name())
+
+person2 = Person('Nazife', 'Yalvaç', 'Kenya')
+#print(person2.__address)
+#print(person2.get_address())
