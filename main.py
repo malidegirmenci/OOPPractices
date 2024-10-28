@@ -115,7 +115,6 @@ while player1.health > 0 and monster1.health > 0:
     print(f'{player1.name} Health: {player1.health} - {monster1.name} Health: {monster1.health}')
     raunt += 1
 
-'''
 
 
 class Character:
@@ -142,11 +141,11 @@ class Character:
     def class_metod2(self):
         Helper.class_method()
 
-'''
+
 char2 = Character('Mahmut', 213, 321,21,3,'Char')
 Character.class_metod2()
 char2.attack()
-'''
+
 
 class Warrior(Character):
     def __init__(self, name, health, attack_power, critical_rate, defence, rage):
@@ -267,3 +266,34 @@ class Umut:
 person2 = Person('Nazife', 'Yalvaç', 'Kenya')
 #print(person2.__address)
 #print(person2.get_address())
+'''
+
+#Polymorphism
+
+class Animal:
+    def sound(self):
+        print('Animal sound')
+
+class Dog(Animal):
+    def sound(self):
+        print('Havv havv!')
+
+class Cat(Animal):
+    def sound(self):
+        print('Miyav miyav!')
+
+class Bird(Animal):
+    def sound(self):
+        print('Cik cik!')
+
+def listen_sound(animal):
+    animal.sound()
+
+cat1 = Cat()
+dog1 = Dog()
+bird1 = Bird()
+
+listen_sound(cat1)
+listen_sound(dog1)
+listen_sound(bird1)
+
