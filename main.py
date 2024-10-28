@@ -266,7 +266,7 @@ class Umut:
 person2 = Person('Nazife', 'Yalvaç', 'Kenya')
 #print(person2.__address)
 #print(person2.get_address())
-'''
+
 
 #Polymorphism
 
@@ -297,3 +297,51 @@ listen_sound(cat1)
 listen_sound(dog1)
 listen_sound(bird1)
 
+'''
+
+# Encapsulation
+class BankAccount:
+    def __init__(self, account_number, balance, name, surname):
+        self.__account_number = account_number
+        self.__balance = balance
+        self._name = name
+        self._surname = surname
+
+    def show_balance(self):
+        print(f'My Balance: {self.__balance} TL')
+
+    def show_account_number(self):
+        print(f'My Account Number: {self.__account_number}')
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f'Transferred to your bank account: {amount} TL')
+            print(f'Your Current Balance: {self.__balance} TL')
+        else:
+            print('Invalid value.')
+
+    def _get_name(self):
+        return self._name
+
+    def _get_surname(self):
+        return self._surname
+
+    def get_full_name(self):
+        return f'{self._get_name()} {self._get_surname()}'
+
+myBankAccount = BankAccount('1234121312312', 10000, 'Mete', 'Dural')
+#print(myBankAccount.account_number)
+#myBankAccount.account_number = 21351512
+#print(myBankAccount.account_number)
+#myBankAccount.show_balance()
+#myBankAccount.__balance = 2131231
+#myBankAccount.show_balance()
+#myBankAccount.__balance = 5000
+#myBankAccount.show_balance()
+#myBankAccount.deposit(5000)
+print(myBankAccount._name)
+myBankAccount._name = 'Mehmet'
+print(myBankAccount._get_name())
+print(myBankAccount._get_surname())
+print(myBankAccount.get_full_name())
