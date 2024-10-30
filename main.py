@@ -267,7 +267,6 @@ person2 = Person('Nazife', 'Yalvaç', 'Kenya')
 #print(person2.__address)
 #print(person2.get_address())
 
-
 #Polymorphism
 
 class Animal:
@@ -286,26 +285,34 @@ class Bird(Animal):
     def sound(self):
         print('Cik cik!')
 
+class Wolf(Animal):
+    def sound(self):
+        print('Aauuuuuww!')
+
+class Wolf(Animal):
+    pass
+
 def listen_sound(animal):
     animal.sound()
 
 cat1 = Cat()
 dog1 = Dog()
 bird1 = Bird()
+wolf1 = Wolf()
 
 listen_sound(cat1)
 listen_sound(dog1)
 listen_sound(bird1)
-
-'''
+listen_sound(wolf1)
 
 # Encapsulation
+# Access modified => private | protected | public
 class BankAccount:
     def __init__(self, account_number, balance, name, surname):
-        self.__account_number = account_number
-        self.__balance = balance
-        self._name = name
-        self._surname = surname
+        self.__account_number = account_number #private
+        self.__balance = balance #private
+        self._name = name #protected
+        self._surname = surname #protected
 
     def show_balance(self):
         print(f'My Balance: {self.__balance} TL')
@@ -345,3 +352,88 @@ myBankAccount._name = 'Mehmet'
 print(myBankAccount._get_name())
 print(myBankAccount._get_surname())
 print(myBankAccount.get_full_name())
+
+#Logical Operators
+# AND - OR - NOT
+
+# AND
+# True and False => False
+# True and True  => True
+# False and False => False
+# False and True => False
+
+username = 'ragip'
+password = '1234'
+if username == 'ragip' and password == '12345': #True and True => True  | True and False => False
+    print('Giriş Başarılı.')
+else:
+    print('Giriş Başarısız.')
+
+# OR
+# False or True => True
+# False or False => False
+# True or True = True
+# True or False = True
+
+color = 'yellow'
+if color == 'green' or color =='yellow': # True or False = True | False or False = False
+    print('We love rainbow')
+else:
+    print('We love dark')
+
+'''
+# Abstraction # Soyutlama
+# ABC = Abstract Base Class => Soyut Temel Sınıf
+
+from abc import ABC, abstractmethod
+
+class Employee(ABC):
+    def __init__(self, name, age, experience):
+        self.name = name
+        self.age = age
+        self.experience = experience
+        self.salary = 0
+
+    @abstractmethod
+    def calc_salary(self):
+        pass #Alt sınıflar kendine göre fonksiyonu düzenleyecek
+
+    def info_salary(self):
+        return f'{self.name} adlı çalışnanın maaşı: {self.__salary}'
+
+    def set_salary(self, salary):
+        if salary > 0:
+            self.__salary = salary
+        else:
+            print('Invalid salary')
+
+    def get_salary(self):
+        return self.__salary
+
+class Manager(Employee):
+    def calc_salary(self):
+        salary = 80000
+        self.set_salary(salary)
+
+class Engineer(Employee):
+    def calc_salary(self):
+        salary = 60000
+        self.set_salary(salary)
+
+class Intern(Employee):
+    def calc_salary(self):
+        salary = 30000
+        self.set_salary(salary)
+
+manager1 = Manager('Deniz', 36, 10)
+engineer1 = Engineer('Mete', 25, 5)
+intern1 = Intern('Umut',18, 0)
+
+MicrosoftSuperTeam = [manager1, engineer1, intern1]
+
+def calc_salary_for_all_employees(employeeList):
+    for employee in employeeList:
+        employee.calc_salary()
+        print(employee.info_salary())
+
+calc_salary_for_all_employees(MicrosoftSuperTeam)
